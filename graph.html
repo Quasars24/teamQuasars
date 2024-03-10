@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Chart with Firebase</title>
+    <!-- including Chart.js library -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- including Firebase-->
+    <script src="char.js" type="module"></script>
+    <script src="chart.js" type="module"></script>
+    <script src="table.js" type="module"></script>
+</head>
+
+<body>
+    <div class="graph">
+    
+        <canvas id="myChart"></canvas>
+        <canvas id="myChar"></canvas>
+        
+    </div>
+    <table id="data-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+
+</html>
