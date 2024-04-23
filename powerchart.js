@@ -30,7 +30,7 @@ const powerChart = new Chart(ctx, {
             label: 'Power',
             data: [0],  
             borderColor:'purple',
-            backgroundColor:'rgba(209, 81, 14, 0.5)',
+            backgroundColor:'rgba(176, 3, 189, 0.4)',
             borderWidth: 2,
             fill: false,
             tension: 0.5
