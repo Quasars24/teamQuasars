@@ -27,9 +27,9 @@ const powerChart = new Chart(ctx, {
     data: {
         labels: [],  
         datasets: [{
-            label: 'Power Factor',
+            label: 'Power',
             data: [0],  
-            borderColor:'rgba(252, 98, 17, 0.93)',
+            borderColor:'purple',
             backgroundColor:'rgba(209, 81, 14, 0.5)',
             borderWidth: 2,
             fill: false,
