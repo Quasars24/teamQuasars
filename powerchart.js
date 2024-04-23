@@ -27,10 +27,10 @@ const powerChart = new Chart(ctx, {
     data: {
         labels: [],  
         datasets: [{
-            label: 'Power',
+            label: 'Power Factor',
             data: [0],  
-            borderColor:'purple',
-            backgroundColor:'rgba(176, 3, 189, 0.4)',
+            borderColor:'rgba(252, 98, 17, 0.93)',
+            backgroundColor:'rgba(209, 81, 14, 0.5)',
             borderWidth: 2,
             fill: false,
             tension: 0.5
@@ -97,9 +97,9 @@ onValue(dataRef, (snapshot) => {
     if (value !== null) {
         // update chart data
         //const customLabel = 'Power'; // Replace this with your desired label
-        const currentTime = 0;
+        const currentTime = new Date().getTime();
         powerChart.data.labels.push(currentTime);
-        powerChart.data.datasets[0].data.push(0);
+        powerChart.data.datasets[0].data.push(value);
 
 
         // remove oldest data points if limit is reached
