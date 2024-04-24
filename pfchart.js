@@ -32,6 +32,7 @@ const pfChart = new Chart(ctx, {
             borderColor:'rgba(252, 98, 17, 0.93)',
             backgroundColor:'rgba(209, 81, 14, 0.5)',
             borderWidth: 2,
+            fill: true,
             tension: 0.5
         }]
     },
