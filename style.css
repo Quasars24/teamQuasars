@@ -1,0 +1,426 @@
+*{
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+     
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+body {
+
+    min-height: 100vh; 
+    background-color: #e5e2e2; 
+}
+h1{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+a{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+}
+.dash{
+    font-size: x-large;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.card1{
+    width: 98%;
+    margin-left: 13px;
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 30px;
+}
+.card2{
+    width: 98%;
+    margin-left: 13px;
+}
+
+.widget{
+    background-color: #fefefe;
+    margin-bottom: 10px;
+    padding: 25px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border-radius: 5px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+.overview{
+    width: 98%;
+    margin-left: 13px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:10px;
+    margin-top: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+
+.cards3{
+    background-color: #2b4162ff;
+    color: #ffffff;
+    margin-bottom: 1px;
+    margin-left: 25px;
+    padding: 35px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border-radius: 12px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+    
+}
+p{
+    align-items: left;
+    font-size: xxx-large;
+}
+/*CHART VALUES*/
+
+/*current chart values*/
+#current-value{
+    font-size: large;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+/*energy chart values*/
+#energy-value{
+    font-size: large;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+/*voltage chart values*/
+#voltage-value{
+    font-size: large;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+/*power chart values*/
+#power-value{
+    font-size: large;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+/*pf chart values*/
+#pf-value{
+    font-size: large;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+/*Nav bar START*/
+nav {
+    font-style: Helvetica;
+    
+}
+nav ul{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+nav li{
+    height: 50px;
+}
+nav a{
+    height: 100%;
+    padding: 0px;
+    text-decoration: none;
+    display: flex;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: xx-large;
+    letter-spacing: 2px;
+    align-items: center;
+    color: #000000;
+}
+nav a:hover{
+    transition:0.5s;
+    color: #434343;
+
+}
+nav li:first-child{
+    margin-right: auto;
+}
+
+/*BUTTON*/
+button{
+    margin-top: 10px;
+    color: #f1e9e9;
+    
+    border-radius: 8px;
+    background-color: #020108;
+    font-size: large;
+    margin-right: 12px;
+}
+
+/*Data Table*/
+#data-table {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    width: auto;
+    margin: 20px auto;
+    border: 1px solid rgb(184, 179, 179);
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: rgba(55, 26, 221, 0.25) 0px 14px 28px, rgba(19, 13, 54, 0.22) 0px 10px 10px;
+    background-color: rgb(7, 70, 50);
+    color: rgb(232, 243, 249);
+}
+th {
+    border-bottom: 2px solid;
+    color: #f9f8fc;
+    font-size: larger;
+    text-decoration: bold;
+    letter-spacing: 2.9px;
+    font-weight: 900;
+    width: 800px;
+    margin: 20px;
+    padding: 5px;
+    border-radius: 2px;
+}
+tbody {
+    font-weight: lighter;
+    font-size: large;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+section{
+    width: 100vh;
+}
+/*Footer*/
+footer {
+    
+    left: 0;
+    bottom: 0;
+    background-color: #D5F585ff;
+    color: #040504;
+    text-align: center;
+    padding: 7px;
+    width: 100%;
+}
+.foot{
+    font-size: large;
+}
+
+/*Dark Mode*/ 
+.dark-mode {
+    transition: 0.5s ease-in-out;
+    background-color: #020108;
+    color: #fcf7f7;
+}
+
+.dark-mode .widget {
+    background-color: #171727;
+}
+ .dark-mode nav{
+    background-color: #261d7f4d;
+ }
+ 
+.dark-mode nav a {
+    color: #e0dee9;
+}
+
+.dark-mode th {
+    color: #000;
+}
+.dark-mode tbody{
+    font-weight: normal;
+}
+
+.dark-mode #data-table {
+    
+    background-color: #D5F585ff;
+    color: #000;
+    box-shadow: rgba(0, 0, 3, 0.25) 0px 14px 28px;
+}
+.dark-mode button{
+    background-color: #f1eeee;
+    color: #050404;
+}
+.dark-mode footer{
+    background-color: rgb(7, 70, 50);
+    color: #f1eeee;
+}
+
+/*navbar*/
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #4BB7C7ff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 80px;
+
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #0d0c0c;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #eceeef;
+  transition: 0.5s;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  
+}
+
+#main {
+  transition: margin-left .5s;
+  
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+  
+}
+
+/*Media Queries*/
+@media screen and (min-width:200px){
+    .card1 {grid-template-columns: 1fr;}
+    .overview {font-size: small;}
+    .overview {grid-template-columns: 1fr;}
+}
+@media screen and (min-width:550px){
+    .card1 {grid-template-columns: 1fr 1fr;} 
+    
+    .overview {grid-template-columns: 1fr 1fr 1fr;}
+}
+@media screen and (min-width:1024px) {
+    .card1 {grid-template-columns: 1fr 1fr 1fr;}
+    
+}
+
+.flipbox {
+    background-color: transparent;
+    width: 400;
+    height: 200;
+    
+    perspective: 1000px;
+}
+.flipbox-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flipbox:hover .flipbox-inner {
+    transform: rotateY(180deg);
+}
+
+.cards2, .flipbox-back {
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.cards2{
+    background-color: #fa9f42ff;
+    color: #000;
+    margin-bottom: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border-radius: 12px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.flipbox-back {
+    background-color: rgba(252, 251, 250, 0.9);
+    padding: 10px;
+    color: white;
+    margin-bottom: 1px;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border-radius: 12px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+    transform: rotateY(180deg);
+}
+
+/*Power factor*/
+
+.flipbox {
+    background-color: transparent;
+    width: 400px;
+    height: 200px;
+    perspective: 1000px;
+}    
+.flipbox-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flipbox:hover .flipbox-inner {
+    transform: rotateY(180deg);
+}
+
+.cards1, .flipbox-back1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.cards1{
+    background-color: #721817ff;
+    color: #fefefe;
+    margin-bottom: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+    
+    -webkit-column-break-inside: avoid;
+    border-radius: 12px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.flipbox-back1 {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    color: white;
+    margin-bottom: 1px;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border-radius: 12px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+    transform: rotateY(180deg);
+}
