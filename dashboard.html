@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Forum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="pfchart.js" type="module"></script>
+    <script src="voltchart.js" type="module"></script>
+    <script src="currentchart.js" type="module"></script>
+    <script src="energychart.js" type="module"></script>
+    <script src="powerchart.js" type="module"></script>
+    <script src="chart.js" type="module"></script>
+
+    <script src="anomalyscore.js" type="module"></script>
+    <!--<script src="diffmethod.js" type="module"></script>-->
+
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Overview</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      
+
+    <div id="main">
+
+        <nav>
+            <ul>
+                <span style="font-size:30px;margin-left:10px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                
+                <li class="dash"><a href="index.html">EVA</a></li>
+                
+                <li><button style="cursor:pointer;" onclick="myFunction()">🌙</button></li>
+            </ul>
+            
+        </nav>
+
+        <h1>Dashboard</h1>
+        <section class="card1">
+            
+            <div class="widget">
+                <h2>Current</h2>
+                <canvas id="currentChart"></canvas>  
+                <p id="current-value">--</p>
+            </div>
+
+            <div class="widget">
+                <h2>Energy</h2>
+                <canvas id="energyChart"></canvas>  
+                <p id="energy-value">--</p>
+            </div>
+
+            <div class="widget">
+                <h2>Voltage</h2>
+                <canvas id="voltChart"></canvas>  
+                <p id="voltage-value">--</p>
+            </div>
+
+            <div class="widget">
+                <h2>Power</h2>
+                <canvas id="powerChart"></canvas>
+                <p id="power-value">--</p>  
+            </div>
+
+            <div class="widget">
+                <h2>Power Factor</h2>
+                <canvas id="pfChart"></canvas>  
+                <p id="pf-value">--</p>
+            </div>
+
+            <div class="widget">
+                <h2>Anomaly Score</h2>
+                <canvas id="anomalyscore"></canvas>  
+            </div>
+        </section>
+
+    </div>
+
+
+    <footer>
+        <p class="foot">Team Quasars 2024</p>
+    </footer>
+
+    <script>
+//dark mode
+        function myFunction() {
+          
+            var element = document.body;
+            element.classList.toggle("dark-mode")
+            var theme;
+
+            if(element.classList.contains("dark-mode")){
+            console.log("Dark Mode");
+            theme="DARK";
+            }else{
+                console.log("Light Mode");
+                theme="LIGHT";
+            }
+            localStorage.setItem("PageTheme", JSON.stringify(theme));
+        }
+        setInterval(() => {
+            let GetTheme = JSON.parse(localStorage.getItem("PageTheme"));
+            console.log(GetTheme);
+            if(GetTheme === "DARK"){
+                document.body.classList = "dark-mode";
+            }else{
+                document.body.classList = "";
+            }
+        }, 5);
+
+
+    //navbar
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+        }
+        </script>
+
+
+        <script>
+            // Your Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBgDR2vriErfaOSrC7QChEvV2yexqeFAMU",
+                authDomain: "quasars-be893.firebaseapp.com",
+                databaseURL: "https://quasars-be893-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "quasars-be893",
+                storageBucket: "quasars-be893.appspot.com",
+                messagingSenderId: "667170242653",
+                appId: "1:667170242653:web:05324cfd8e846235520db4",
+                measurementId: "G-FJZ8CMCPTC"
+            };
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Get a reference to the database service
+            var database = firebase.database();
+
+            
+            // Function to display the Current value
+            function displayCurrent() {
+                var currentRef = database.ref('User/Current');
+                currentRef.on('value', (snapshot) => {
+                    const current = snapshot.val();
+                    document.getElementById('current-value').innerText = current + " A";
+                });
+            }
+            // Function to display the Energy value
+            function displayEnergy() {
+                var energyRef = database.ref('User/Energy');
+                energyRef.on('value', (snapshot) => {
+                    const energy = snapshot.val();
+                    document.getElementById('energy-value').innerText = energy + " kWhr";
+                });
+            }
+            // Function to display the Energy value
+            function displayVoltage() {
+                var voltageRef = database.ref('User/Voltage');
+                voltageRef.on('value', (snapshot) => {
+                    const voltage = snapshot.val();
+                    document.getElementById('voltage-value').innerText = voltage + " V";
+                });
+            }
+
+            // Function to display the Power value
+            function displayPower() {
+                var powerRef = database.ref('User/Power');
+                powerRef.on('value', (snapshot) => {
+                    const power = snapshot.val();
+                    document.getElementById('power-value').innerText = power + " W";
+                });
+            }
+            // Function to display the Power Factor value
+            function displayPowerFactor() {
+                var pfRef = database.ref('User/Power Factor');
+                pfRef.on('value', (snapshot) => {
+                    const pf = snapshot.val();
+                    document.getElementById('pf-value').innerText = pf;
+                });
+            }
+            displayCurrent();
+            displayEnergy();
+            displayVoltage();
+            displayPower();
+            displayPowerFactor();
+
+        </script>
+    
+</body>
+</html>
+
+

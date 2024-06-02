@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="table.js" type="module"></script>
+    <script src="powerchart.js" type="module"></script>
+    <script src="pfchart.js" type="module"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Overview</a>
+        <a href="dashboard.html">Dashboard</a>
+        
+        
+    </div>
+    
+    <div id="main">
+
+        <nav>
+            <ul>
+            
+                <span style="font-size:30px;margin-left:10px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                <!--<img src=> --> 
+                <li class="dash"><a href="index.html" >EVA</a></li>
+                
+                <li><button style="cursor:pointer;" onclick="myFunction()">🌙</button></li>
+            </ul>
+            
+        </nav>
+        <section class="overview">
+
+
+
+            <div class="flipbox">
+                <div class="flipbox-inner">
+                    <div class="cards2">
+                        <h2>Power</h2>
+                        <p id="power">--</p>
+                    </div>
+                    <div class="flipbox-back">
+                        <canvas id="powerChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="flipbox">
+                <div class="flipbox-inner">
+                    <div  class="cards1">
+                        <h2>Power Factor</h2>
+                        <p id="power-factor">--</p>
+                    </div>
+                    <div class="flipbox-back1">
+                        <canvas id="pfChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="cards3">
+                <h2>Relay Pin</h2>
+                <p id="relay">--</p>
+            </div>
+            
+        </section>
+
+<!--datatable-->
+        <section class="card2"> 
+            <div class="widget">
+                <h2>Datatable</h2>
+                <table id="data-table">
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody></tbody>
+                    
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p class="foot">Team Quasars 2024</p>
+    </footer>
+
+    <script>
+
+//dark mode
+        function myFunction() {
+          
+           var element = document.body;
+           element.classList.toggle("dark-mode")
+           var theme;
+
+           if(element.classList.contains("dark-mode")){
+            console.log("Dark Mode");
+            theme="DARK";
+            }else{
+                console.log("Light Mode");
+                theme="LIGHT";
+           }
+           localStorage.setItem("PageTheme", JSON.stringify(theme));
+        }
+        setInterval(() => {
+            let GetTheme = JSON.parse(localStorage.getItem("PageTheme"));
+            
+            if(GetTheme === "DARK"){
+                document.body.classList = "dark-mode";
+            }else{
+                document.body.classList = "";
+            }
+        }, 5);
+
+
+
+
+    //navbar
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+        }
+        </script>
+        <script>
+
+            // Your Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBgDR2vriErfaOSrC7QChEvV2yexqeFAMU",
+                authDomain: "quasars-be893.firebaseapp.com",
+                databaseURL: "https://quasars-be893-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "quasars-be893",
+                storageBucket: "quasars-be893.appspot.com",
+                messagingSenderId: "667170242653",
+                appId: "1:667170242653:web:05324cfd8e846235520db4",
+                measurementId: "G-FJZ8CMCPTC"
+            };
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+
+            // Get a reference to the database service
+            var database = firebase.database();
+
+            function displayPowerFactor() {
+                var powerFactorRef = database.ref('User/Power Factor');
+                powerFactorRef.on('value', (snapshot) => {
+                    const powerFactor = snapshot.val();
+                    document.getElementById('power-factor').innerText = powerFactor;
+                });
+            }
+            // Function to display the Power
+            function displayPower() {
+                var powerRef = database.ref('User/Power');
+                powerRef.on('value', (snapshot) => {
+                    const power = snapshot.val();
+                    document.getElementById('power').innerText = power + "W";
+                });
+            }
+            // Function to display the RelayPin
+            function displayRelayPin() {
+                var relayRef = database.ref('User/RelayPin');
+                relayRef.on('value', (snapshot) => {
+                    const relay = snapshot.val();
+                    document.getElementById('relay').innerText = relay;
+                });
+            }
+
+            // Call the functions to display the Power Factor and Power
+            displayPowerFactor();
+            displayPower();
+            displayRelayPin();
+    
+        </script>
+</body>
+</html>
